@@ -1,0 +1,83 @@
+---
+title: "Fuel Efficiency for Cars"
+author: "Alessandro Speranza"
+date: "8/24/2021"
+output:
+  html_document:
+    number_sections: yes
+    toc: yes
+    toc_float:
+      collapsed: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cash = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(funModeling)
+library(DataExplorer)
+library(colorspace)
+```
+
+<br>
+
+# Get data
+```{r get_data}
+# Directly for Julia Silge repository on github (used this method)
+cars2018 <- read_csv("https://raw.githubusercontent.com/juliasilge/supervised-ML-case-studies-course/master/data/cars2018.csv")
+
+
+# Alternative ways to get the data 
+# from my file system without package here
+# cars2018_2 <- read_csv("COU - Supervised Machine Learning. Case Studies in R!/Fuel Efficiency for Cars/data/cars2018.csv") %>% 
+  # janitor::clean_names()
+
+# from my file system using package here
+# cars2018_2 <- read_csv(here("COU - Supervised Machine Learning. Case Studies in R!/Fuel Efficiency for Cars/data", "cars2018.csv"), show_col_types = FALSE) %>% 
+#   janitor::clean_names()
+```
+
+<br>
+
+# Exploring the dataset
+```{r explore_dataset}
+glimpse(cars2018)
+
+df_status(cars2018)
+
+summary(cars2018$mpg)
+```
+
+<br>
+
+# Visualizing the fuel efficiency (mpg) distribution
+```{r  visualizing_mpg_distribution}
+ggplot(cars2018, aes(x= mpg)) +
+  geom_histogram(bins = 50) +
+  labs(title = "Fuel efficiency (mpg) distribution",
+    x = "Fuel efficiency (mpg)",
+       y = "Number of cars") +
+  theme_minimal()
+
+# or
+
+ggplot(cars2018, aes(x= mpg)) +
+  geom_density(fill = "#31688E", color = darken("#56B4E9", 1.0)) +
+  labs(title = "Fuel efficiency (mpg) distribution",
+       x = "Fuel efficiency (mpg)",
+       y = "Number of cars") +
+  theme_minimal()
+
+# Notice that this distribution is not normal, but instead log normal. 
+# It will be best for us to take this into account when we build models.
+```
+
+<br>
+
+# Building a simple linear model
+```{r}
+
+```
+

@@ -1,0 +1,50 @@
+Call:
+lm(formula = MPG ~ ., data = car_vars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.5261 -1.6473 -0.1096  1.3572 26.5045 
+
+Coefficients:
+                                                Estimate Std. Error t value
+(Intercept)                                    44.539519   1.176283  37.865
+Displacement                                   -3.786147   0.264845 -14.296
+Cylinders                                       0.520284   0.161802   3.216
+Gears                                           0.157674   0.069984   2.253
+TransmissionCVT                                 4.877637   0.404051  12.072
+TransmissionManual                             -1.074608   0.366075  -2.935
+AspirationTurbocharged/Supercharged            -2.190248   0.267559  -8.186
+`Lockup Torque Converter`Y                     -2.624494   0.381252  -6.884
+Drive2-Wheel Drive, Rear                       -2.676716   0.291044  -9.197
+Drive4-Wheel Drive                             -3.397532   0.335147 -10.137
+DriveAll Wheel Drive                           -2.941084   0.257174 -11.436
+`Max Ethanol`                                  -0.007377   0.005898  -1.251
+`Recommended Fuel`Premium Unleaded Required    -0.403935   0.262413  -1.539
+`Recommended Fuel`Regular Unleaded Recommended -0.996343   0.272495  -3.656
+`Intake Valves Per Cyl`                        -1.446107   1.620575  -0.892
+`Exhaust Valves Per Cyl`                       -2.469747   1.547748  -1.596
+`Fuel injection`Multipoint/sequential ignition -0.658428   0.243819  -2.700
+                                               Pr(>|t|)    
+(Intercept)                                     < 2e-16 ***
+Displacement                                    < 2e-16 ***
+Cylinders                                      0.001339 ** 
+Gears                                          0.024450 *  
+TransmissionCVT                                 < 2e-16 ***
+TransmissionManual                             0.003398 ** 
+AspirationTurbocharged/Supercharged            7.24e-16 ***
+`Lockup Torque Converter`Y                     9.65e-12 ***
+Drive2-Wheel Drive, Rear                        < 2e-16 ***
+Drive4-Wheel Drive                              < 2e-16 ***
+DriveAll Wheel Drive                            < 2e-16 ***
+`Max Ethanol`                                  0.211265    
+`Recommended Fuel`Premium Unleaded Required    0.124010    
+`Recommended Fuel`Regular Unleaded Recommended 0.000268 ***
+`Intake Valves Per Cyl`                        0.372400    
+`Exhaust Valves Per Cyl`                       0.110835    
+`Fuel injection`Multipoint/sequential ignition 0.007028 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.916 on 1127 degrees of freedom
+Multiple R-squared:  0.7314,	Adjusted R-squared:  0.7276 
+F-statistic: 191.8 on 16 and 1127 DF,  p-value: < 2.2e-16

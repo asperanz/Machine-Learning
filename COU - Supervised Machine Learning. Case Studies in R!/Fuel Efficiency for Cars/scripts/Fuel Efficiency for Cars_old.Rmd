@@ -1,0 +1,81 @@
+---
+title: "Fuel Efficiency for Cars"
+author: "Alessandro Speranza"
+date: "2/14/2020"
+output: 
+  html_document:
+    number_sections: yes
+    toc: yes
+    toc_float:
+      collapsed: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(janitor)
+library(here)
+```
+
+# Loading data
+```{r get_data}
+# Directly for Julia Silge repository on github
+cars2018 <- read_csv("https://raw.githubusercontent.com/juliasilge/supervised-ML-case-studies-course/master/data/cars2018.csv")
+
+# Alternative ways to get the data 
+
+# from my file system without package here
+cars2018_2 <- read_csv("COU - Supervised Machine Learning. Case Studies in R!/Fuel Efficiency for Cars/data/cars2018.csv") %>% 
+  janitor::clean_names()
+
+# from my file system using package here
+cars2018_2 <- read_csv(here("COU - Supervised Machine Learning. Case Studies in R!/Fuel Efficiency for Cars/data", "cars2018.csv"), show_col_types = FALSE) %>% 
+  janitor::clean_names()
+```
+
+# Exploring the dataset 
+```{r explore_dataset}
+glimpse(cars2018)
+
+df_status(cars2018)
+```
+
+# Visualizing the fuel efficiency (mpg) distribution 
+```{r}
+summary(cars2018$MPG)
+
+ggplot(cars2018, aes(MPG)) +
+  geom_histogram(bins = 50) +
+  labs(x = "Fuel efficiency (mpg)",
+       y = "Number of cars") +
+  theme_minimal()
+
+ggplot(cars2018, aes(MPG)) +
+  geom_density(fill = "#1f9e89", color = darken("#56B4E9", 0.5)) +
+  labs(x = "Fuel efficiency (mpg)",
+       y = "Number of cars") +
+  theme_minimal()
+  
+# Notice that this distribution is not normal, but instead log normal. 
+# It will be best for us to take this into account when we build models.
+
+ggsave("./Output/mpg_distribution.png")
+```
+
+# Building a simple linear model 
+```{r}
+# Deselect the 2 columns to create cars_vars
+car_vars <- cars2018 %>% 
+  select(-c('Model','Model Index'))
+
+# Fit a linear model
+fit_all <- lm(MPG ~ ., data = car_vars)
+
+summary(fit_all)
+
+# This is not the best model we will build in this chapter, but notice which predictors have larger effect sizes and which are significant or not significant.
+```
+
